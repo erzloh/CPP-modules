@@ -10,23 +10,34 @@ OBJS 		= $(patsubst $(SRCS_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 
 INCL		= incl
 
+# Farbdefinitionen
+GREEN		= \033[0;32m
+RED			= \033[0;31m
+CYAN		= \033[0;36m
+RESET		= \033[0m
+
 all: $(NAME)
 
 $(NAME): $(OBJS_DIR) $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@echo "$(GREEN)Compilation completed successfully!$(RESET)"
+	@echo "To run the program, use: ./$(NAME)"
 
 $(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INCL)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INCL)
+	@echo "$(CYAN)Compiled:$(RESET) $<"
 
 clean:
-	rm -rf $(OBJS_DIR)
+	@rm -rf $(OBJS_DIR)
+	@echo "$(RED)Objects removed.$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(RED)Executable removed.$(RESET)"
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re
