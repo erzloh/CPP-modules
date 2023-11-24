@@ -10,17 +10,17 @@ public:
 	void start();
 
 private:
-	Contact contactList[8];
-	int		i;
+	Contact _contactList[8];
+	int		_i;
 
-	void	add();
-	void	search();
-	void	exit();
+	void	_add();
+	void	_search();
+	void	_exit();
 
-	int			readCommand();
-	std::string	getProcessedStr(std::string str);
-	bool		isNumber(const std::string& str);
-	bool		isValidIndex(const std::string& str);
+	int			_readCommand();
+	std::string	_getProcessedStr(std::string str);
+	bool		_isNumber(const std::string& str);
+	bool		_isValidIndex(const std::string& str);
 };
 
 #endif
