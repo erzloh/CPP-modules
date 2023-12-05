@@ -3,7 +3,7 @@
 #include <iostream>
 
 ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "Constructor was called" << std::endl;
+	std::cout << name << " has been created" << std::endl;
 }
 	
 ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name), _hitPoints(other._hitPoints), _energyPoints(other._energyPoints), _attackDamage(other._attackDamage) {
@@ -11,7 +11,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name), _hitPoints(other
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "Destructor was called" << std::endl;
+	std::cout << _name << " has been killed" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
