@@ -1,4 +1,4 @@
-NAME		= ex01
+NAME		= ex02
 CXX			= c++
 CXXFLAGS	= -Werror -Wextra -Wall -std=c++98
 
