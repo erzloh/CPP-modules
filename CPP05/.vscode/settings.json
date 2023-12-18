@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"exception": "cpp",
-		"iosfwd": "cpp"
+		"iosfwd": "cpp",
+		"iostream": "cpp"
 	}
 }
