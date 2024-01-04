@@ -12,6 +12,7 @@ public:
 private:
 	Contact _contactList[8];
 	int		_i;
+	int		_size;
 
 	void	_add();
 	void	_search();

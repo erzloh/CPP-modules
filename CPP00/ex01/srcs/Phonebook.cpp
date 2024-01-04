@@ -18,7 +18,7 @@
 
 Phonebook::Phonebook() {
 	this->_i = 0;
-
+	this->_size = false;
 }
 
 Phonebook::~Phonebook() {
@@ -107,55 +107,65 @@ int Phonebook::_readCommand() {
 void Phonebook::_add() {	
 	std::cout << "Give some information about the new contact." << std::endl << std::endl;
 
-	int current = this->_i;
-	if (this->_i == 8) {
+	
+	if (_size == 8) {
 		std::cout << RED << "The phonebook is full, the oldest contact will be replaced." << RESET << std::endl;
-		current = 0;
+		_contactList[_i].firstName.clear();
+		_contactList[_i].lastName.clear();
+		_contactList[_i].nickName.clear();
+		_contactList[_i].phoneNumber.clear();
+		_contactList[_i].secret.clear();
 	}
 
-	while (this->_contactList[current].firstName.empty()) {
+	while (this->_contactList[_i].firstName.empty()) {
 		std::cout << "> What is its first name:" << std::endl;
 		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[current].firstName);
-		if (this->_contactList[current].firstName.empty()) {
+		std::getline(std::cin, this->_contactList[_i].firstName);
+		if (this->_contactList[_i].firstName.empty()) {
 			std::cout << RED << "Please enter a valid first name." << RESET << std::endl;
 		}
 	}
-	while (this->_contactList[current].lastName.empty()) {
+	while (this->_contactList[_i].lastName.empty()) {
 		std::cout << "> What is its last name:" << std::endl;
 		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[current].lastName);
-		if (this->_contactList[current].lastName.empty()) {
+		std::getline(std::cin, this->_contactList[_i].lastName);
+		if (this->_contactList[_i].lastName.empty()) {
 			std::cout << RED << "Please enter a valid last name." << RESET << std::endl;
 		}
 	}
-	while (this->_contactList[current].nickName.empty()) {
+	while (this->_contactList[_i].nickName.empty()) {
 		std::cout << "> What is its nickname:" << std::endl;
 		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[current].nickName);
-		if (this->_contactList[current].nickName.empty()) {
+		std::getline(std::cin, this->_contactList[_i].nickName);
+		if (this->_contactList[_i].nickName.empty()) {
 			std::cout << RED << "Please enter a valid nickname." << RESET << std::endl;
 		}
 	}
-	while (this->_contactList[current].phoneNumber.empty()) {
+	while (this->_contactList[_i].phoneNumber.empty()) {
 		std::cout << "> What is its phone number:" << std::endl;
 		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[current].phoneNumber);
-		if (this->_contactList[current].phoneNumber.empty()) {
+		std::getline(std::cin, this->_contactList[_i].phoneNumber);
+		if (this->_contactList[_i].phoneNumber.empty()) {
 			std::cout << RED << "Please enter a valid phone number." << RESET << std::endl;
 		}
 	}
-	while (this->_contactList[current].secret.empty()) {
+	while (this->_contactList[_i].secret.empty()) {
 		std::cout << "> What is its darkest secret:" << std::endl;
 		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[current].secret);
-		if (this->_contactList[current].secret.empty()) {
+		std::getline(std::cin, this->_contactList[_i].secret);
+		if (this->_contactList[_i].secret.empty()) {
 			std::cout << RED << "Please enter a valid darkest secret." << RESET << std::endl;
 		}
 	}
 
-	if (this->_i != 8) {
+	if (this->_size < 8) {
+		this->_size++;
+	}
+
+	if (this->_i < 7) {
 		this->_i++;
+	} else {
+		this->_i = 0;
 	}
 
 	std::cout << GREEN << "Contact added!" << RESET << std::endl << std::endl;
@@ -166,14 +176,14 @@ void Phonebook::_search() {
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
-	for (int i = 0; i < this->_i; i++) {
+	for (int i = 0; i < this->_size; i++) {
 		std::cout << "|         " << i+1 << "|";
 		std::cout << _getProcessedStr(this->_contactList[i].firstName) << "|";
 		std::cout << _getProcessedStr(this->_contactList[i].lastName) << "|";
 		std::cout << _getProcessedStr(this->_contactList[i].nickName) << "|";
 		std::cout << std::endl;
 	}
-	if (this->_i != 0) {
+	if (this->_size != 0) {
 		std::cout << "---------------------------------------------" << std::endl;
 	}
 	else {
@@ -231,7 +241,7 @@ bool Phonebook::_isNumber(const std::string& str) {
 }
 
 bool Phonebook::_isValidIndex(const std::string& str) {
-	if (!this->_isNumber(str) || std::stoi(str) > this->_i || std::stoi(str) < 0) {
+	if (!this->_isNumber(str) || std::stoi(str) > _ || std::stoi(str) < 0) {
 		return false;
 	}
 	return true;
