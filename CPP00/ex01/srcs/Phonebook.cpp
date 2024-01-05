@@ -1,82 +1,17 @@
 #include "Phonebook.hpp"
+#include "colors.hpp"
+#include "printText.hpp"
 #include <iostream>
-#include <thread>
-#include <chrono>
 
-#define RESET       "\033[0m"
-#define BLACK       "\033[30m"
-#define RED         "\033[31m"
-#define GREEN       "\033[32m"
-#define YELLOW      "\033[33m"
-#define BLUE        "\033[34m"
-#define MAGENTA     "\033[35m"
-#define CYAN        "\033[36m"
-#define WHITE       "\033[37m"
-#define ORANGE      "\033[38;5;208m"
-#define BOLD        "\033[1m"
-#define UNDERLINE   "\033[4m"
+Phonebook::Phonebook() : _i(0), _size(0) {}
 
-Phonebook::Phonebook() {
-	this->_i = 0;
-	this->_size = false;
-}
-
-Phonebook::~Phonebook() {
-}
+Phonebook::~Phonebook() {}
 
 void Phonebook::start() {
-	std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	std::cout << BLUE;
-    std::cout << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "           /$$                                     /$$                           /$$      \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "          | $$                                    | $$                          | $$      \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "  /$$$$$$ | $$$$$$$   /$$$$$$  /$$$$$$$   /$$$$$$ | $$$$$$$   /$$$$$$   /$$$$$$ | $$   /$$\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << " /$$__  $$| $$__  $$ /$$__  $$| $$__  $$ /$$__  $$| $$__  $$ /$$__  $$ /$$__  $$| $$  /$$/\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$$$$$/ \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "| $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$_  $$ \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "| $$$$$$$/| $$  | $$|  $$$$$$/| $$  | $$|  $$$$$$/| $$$$$$$/|  $$$$$$/|  $$$$$$/| $$ \\  $$\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "| $$____/ |__/  |__/ \\______/ |__/  |__/ \\_______/|_______/  \\______/  \\______/ |__/  \\__/\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "| $$                                                                                      \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "| $$                                                                                      \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "|__/                                                                                      \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << std::endl;
-
-	std::cout << ORANGE;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "   ____   __   __    U _____ u   ____                  ____  \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "U | __\")u \\ \\ / /    \\| ___\"|/U |  _\"\\ u     ___    U /\"___| \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << " \\|  _ \\/  \\ V /      |  _|\"   \\| |_) |/    |\"_|     \\| | u   \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "  | |_) | U_|\"|_u     | |___    |  _ <       | |     | |/__   \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "  |____/    |_|       |_____|   |_| \\_\\    U/| |\\u    \\____| \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << " _|| \\\\_.-,//|(_      <<   >>   //   \\\\_.-,_|___|_,-._// \\\\  \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "(__) (__)(_) (__)    (__) (__) (__)  (__)\\_)-' '-(_/(__)(__) \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << std::endl << std::endl;
-	std::cout << RESET;
-
+	printGreetings();
 	std::cout << BLUE << "Hello and welcome to my awesome phonebook!" << RESET << std::endl;
 	while (1) {
-		if (this->_readCommand())
+		if (_readCommand() == 1)
 			break;
 	}
 }
@@ -90,13 +25,13 @@ int Phonebook::_readCommand() {
 
 	if (command == "ADD") {
         std::cout << std::endl << "You chose the command " << ORANGE << "ADD" << RESET << std::endl;
-		this->_add();
+		_add();
     } else if (command == "SEARCH") {
         std::cout << "You chose the command " << ORANGE "SEARCH" << RESET << std::endl << std::endl;
-		this->_search();
+		_search();
     } else if (command == "EXIT") {
         std::cout << "You chose the command " << ORANGE << "EXIT" << RESET << std::endl;
-		this->_exit();
+		printBye();
 		return (1);
     } else {
         std::cout << RED << "Please enter a valid command." << RESET << std::endl;
@@ -104,71 +39,70 @@ int Phonebook::_readCommand() {
 	return (0);
 }
 
+static std::string getNonEmptyInput(std::string message) {
+	std::string input = "";
+	while (input.empty()) {
+		std::cout << message << std::endl;
+		std::cout << "< ";
+		std::getline(std::cin, input);
+		if (input.empty()) {
+			std::cout << RED << "Please enter a valid input." << RESET << std::endl;
+		}
+	}
+	return (input);
+}
+
 void Phonebook::_add() {	
 	std::cout << "Give some information about the new contact." << std::endl << std::endl;
 
-	
-	if (_size == 8) {
+	if (_size == MAX_CONTACTS) {
 		std::cout << RED << "The phonebook is full, the oldest contact will be replaced." << RESET << std::endl;
-		_contactList[_i].firstName.clear();
-		_contactList[_i].lastName.clear();
-		_contactList[_i].nickName.clear();
-		_contactList[_i].phoneNumber.clear();
-		_contactList[_i].secret.clear();
 	}
 
-	while (this->_contactList[_i].firstName.empty()) {
-		std::cout << "> What is its first name:" << std::endl;
-		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[_i].firstName);
-		if (this->_contactList[_i].firstName.empty()) {
-			std::cout << RED << "Please enter a valid first name." << RESET << std::endl;
-		}
-	}
-	while (this->_contactList[_i].lastName.empty()) {
-		std::cout << "> What is its last name:" << std::endl;
-		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[_i].lastName);
-		if (this->_contactList[_i].lastName.empty()) {
-			std::cout << RED << "Please enter a valid last name." << RESET << std::endl;
-		}
-	}
-	while (this->_contactList[_i].nickName.empty()) {
-		std::cout << "> What is its nickname:" << std::endl;
-		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[_i].nickName);
-		if (this->_contactList[_i].nickName.empty()) {
-			std::cout << RED << "Please enter a valid nickname." << RESET << std::endl;
-		}
-	}
-	while (this->_contactList[_i].phoneNumber.empty()) {
-		std::cout << "> What is its phone number:" << std::endl;
-		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[_i].phoneNumber);
-		if (this->_contactList[_i].phoneNumber.empty()) {
-			std::cout << RED << "Please enter a valid phone number." << RESET << std::endl;
-		}
-	}
-	while (this->_contactList[_i].secret.empty()) {
-		std::cout << "> What is its darkest secret:" << std::endl;
-		std::cout << "< ";
-		std::getline(std::cin, this->_contactList[_i].secret);
-		if (this->_contactList[_i].secret.empty()) {
-			std::cout << RED << "Please enter a valid darkest secret." << RESET << std::endl;
-		}
-	}
+	_contactList[_i].setFirstName(getNonEmptyInput("> What is its first name:"));
+	_contactList[_i].setLastName(getNonEmptyInput("> What is its last name:"));
+	_contactList[_i].setNickName(getNonEmptyInput("> What is its nickname:"));
+	_contactList[_i].setPhoneNumber(getNonEmptyInput("> What is its phone number:"));
+	_contactList[_i].setSecret(getNonEmptyInput("> What is its darkest secret:"));
 
-	if (this->_size < 8) {
-		this->_size++;
+	if (_size < 8) {
+		_size++;
 	}
-
-	if (this->_i < 7) {
-		this->_i++;
+	if (_i < 7) {
+		_i++;
 	} else {
-		this->_i = 0;
+		_i = 0;
 	}
-
 	std::cout << GREEN << "Contact added!" << RESET << std::endl << std::endl;
+}
+
+static std::string getProcessedStr(std::string str) {
+	if (str.size() > 10) {
+		str.resize(10);
+		str[9] = '.';
+		return (str);
+	}
+	str.insert(0, 10 - str.size(), ' ');
+	return (str);
+}
+
+static bool isNumber(const std::string& str) {
+    try {
+        size_t pos;
+        std::stoi(str, &pos);
+        return pos == str.size();
+    } catch (const std::invalid_argument&) {
+        return false;
+    } catch (const std::out_of_range&) {
+        return false;
+    }
+}
+
+static bool isValidIndex(const std::string& str, int &size) {
+	if (!isNumber(str) || std::stoi(str) > size || std::stoi(str) < 0) {
+		return false;
+	}
+	return true;
 }
 
 void Phonebook::_search() {
@@ -176,11 +110,11 @@ void Phonebook::_search() {
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
-	for (int i = 0; i < this->_size; i++) {
+	for (int i = 0; i < _size; i++) {
 		std::cout << "|         " << i+1 << "|";
-		std::cout << _getProcessedStr(this->_contactList[i].firstName) << "|";
-		std::cout << _getProcessedStr(this->_contactList[i].lastName) << "|";
-		std::cout << _getProcessedStr(this->_contactList[i].nickName) << "|";
+		std::cout << getProcessedStr(_contactList[i].getFirstName()) << "|";
+		std::cout << getProcessedStr(_contactList[i].getLastName()) << "|";
+		std::cout << getProcessedStr(_contactList[i].getNickName()) << "|";
 		std::cout << std::endl;
 	}
 	if (this->_size != 0) {
@@ -193,10 +127,10 @@ void Phonebook::_search() {
 
 	std::cout << std::endl << "Select a contact by typing its index or " << ORANGE << "EXIT" << RESET << " with " << ORANGE << "0" << RESET << std::endl;
 	std::string index = "-1";
-	while (!this->_isValidIndex(index)) {
+	while (!isValidIndex(index, _size)) {
 		std::cout << "< ";
 		std::getline(std::cin, index);
-		if (!this->_isValidIndex(index)) {
+		if (!isValidIndex(index, _size)) {
 			std::cout << RED << "Please enter a valid contact index." << RESET << std::endl;
 		}
 		else if (std::stoi(index) == 0) {
@@ -210,63 +144,10 @@ void Phonebook::_search() {
 	int indexInt = std::stoi(index) - 1;
 	std::cout << GREEN << "You chose the index " << indexInt + 1 << RESET << std::endl;
 	std::cout << "Here are the details of the contact:" << std::endl << std::endl;
-	std::cout << "First Name    : " << this->_contactList[indexInt].firstName << std::endl;
-	std::cout << "Last Name     : " << this->_contactList[indexInt].lastName << std::endl;
-	std::cout << "Nickname      : " << this->_contactList[indexInt].nickName << std::endl;
-	std::cout << "Phone Number  : " << this->_contactList[indexInt].phoneNumber << std::endl;
-	std::cout << "Darkest Secret: " << this->_contactList[indexInt].secret << std::endl;
+	std::cout << "First Name    : " << this->_contactList[indexInt].getFirstName() << std::endl;
+	std::cout << "Last Name     : " << this->_contactList[indexInt].getLastName() << std::endl;
+	std::cout << "Nickname      : " << this->_contactList[indexInt].getNickName() << std::endl;
+	std::cout << "Phone Number  : " << this->_contactList[indexInt].getPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << this->_contactList[indexInt].getSecret() << std::endl;
 	std::cout << std::endl;
-}
-
-std::string Phonebook::_getProcessedStr(std::string str) {
-	if (str.size() > 10) {
-		str.resize(10);
-		str[9] = '.';
-		return (str);
-	}
-	str.insert(0, 10 - str.size(), ' ');
-	return (str);
-}
-
-bool Phonebook::_isNumber(const std::string& str) {
-    try {
-        size_t pos;
-        std::stoi(str, &pos);
-        return pos == str.size();
-    } catch (const std::invalid_argument&) {
-        return false;
-    } catch (const std::out_of_range&) {
-        return false;
-    }
-}
-
-bool Phonebook::_isValidIndex(const std::string& str) {
-	if (!this->_isNumber(str) || std::stoi(str) > _size || std::stoi(str) < 0) {
-		return false;
-	}
-	return true;
-}
-
-void Phonebook::_exit() {
-	std::cout << BLUE << "Goodbye!" << RESET << std::endl;
-
-	std::cout << "            88                           \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "            \"\"                           \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "                                          \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << " ,adPPYba,  88  ,adPPYYba,   ,adPPYba,   \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "a8\"     \"\"  88  \"\"     `Y8  a8\"     \"8a  \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "8b          88  ,adPPPPP88  8b       d8  \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "\"8a,   ,aa  88  88,    ,88  \"8a,   ,a8\"  \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << " `\"Ybbd8\"'  88  `\"8bbdP\"Y8   `\"YbbdP\"'   \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "                                          \n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "                                          \n";
 }

@@ -1,6 +1,8 @@
 #ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
-# include "Contact.hpp"
+#define PHONEBOOK_CLASS_H
+#include "Contact.hpp"
+
+#define MAX_CONTACTS 8
 
 class Phonebook {
 
@@ -14,14 +16,9 @@ private:
 	int		_i;
 	int		_size;
 
+	int		_readCommand();
 	void	_add();
 	void	_search();
-	void	_exit();
-
-	int			_readCommand();
-	std::string	_getProcessedStr(std::string str);
-	bool		_isNumber(const std::string& str);
-	bool		_isValidIndex(const std::string& str);
 };
 
 #endif
