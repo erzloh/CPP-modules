@@ -6,7 +6,7 @@ SRCS_DIR	= srcs
 OBJS_DIR	= objs
 
 SRCS = $(wildcard $(SRCS_DIR)/*.cpp)
-OBJS = $(patsubst $(SRCS_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
+OBJS = $(patsubst $(SRCS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))
 
 all: $(NAME)
 

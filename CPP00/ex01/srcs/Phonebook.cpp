@@ -241,7 +241,7 @@ bool Phonebook::_isNumber(const std::string& str) {
 }
 
 bool Phonebook::_isValidIndex(const std::string& str) {
-	if (!this->_isNumber(str) || std::stoi(str) > _ || std::stoi(str) < 0) {
+	if (!this->_isNumber(str) || std::stoi(str) > _size || std::stoi(str) < 0) {
 		return false;
 	}
 	return true;
