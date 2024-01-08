@@ -8,4 +8,5 @@ int main() {
 	// harl.complain("info");
 	// harl.complain("warning");
 	// harl.complain("error");
+	// harl.complain("unknown");
 }
