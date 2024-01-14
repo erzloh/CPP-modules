@@ -15,7 +15,7 @@ public:
 	// Constructor Copy
 	Array(const Array & other) : _array(new T[other.size()]), _size(other.size()) {
 		for (size_t i = 0; i < _size; i++) {
-			_array[i] = other.getArray()[i];
+			_array[i] = other._array[i];
 		}
 	}
 
@@ -26,7 +26,7 @@ public:
 			_array = new T[other.size()];
 			_size = other.size();
 			for (size_t i = 0; i < other.size(); i++) {
-				_array[i] = other.getArray()[i];
+				_array[i] = other._array[i];
 			}
 		}
 		return *this;
