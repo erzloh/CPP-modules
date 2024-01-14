@@ -5,6 +5,7 @@
 
 int main()
 {
+	Array<int> empty;
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
