@@ -17,7 +17,7 @@ int main()
 		std::cout << "Not found" << std::endl;
 
 	std::cout << "List: " << std::endl;
-	std::list<int>::iterator it2 = easyfind(myList, 3);
+	std::list<int>::iterator it2 = easyfind(myList, 42);
 	if (it2 != myList.end())
 		std::cout << *it2 << std::endl;
 	else
