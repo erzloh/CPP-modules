@@ -6,7 +6,9 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 	this->_hitPoints = 100;
     this->_energyPoints = 50;
     this->_attackDamage = 20;
-}ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+}
+
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
     std::cout << "ScavTrap copy constructor called" << std::endl;
 }
 
