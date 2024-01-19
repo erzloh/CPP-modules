@@ -17,6 +17,14 @@ Dog::~Dog() {
 	delete brain;
 }
 
+Dog & Dog::operator=(const Dog& other) {
+	if (this != &other) {
+		Animal::operator=(other);
+		*brain = *other.brain;
+	}
+	return *this;
+}
+
 void Dog::makeSound() const {
 	std::cout << "Woof!" << std::endl;
 }

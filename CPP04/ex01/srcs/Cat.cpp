@@ -17,6 +17,14 @@ Cat::~Cat() {
 	delete brain;
 }
 
+Cat & Cat::operator=(const Cat& other) {
+	if (this != &other) {
+		Animal::operator=(other);
+		*brain = *other.getBrain();
+	}
+	return *this;
+}
+
 void Cat::makeSound() const {
 	std::cout << "Meow!" << std::endl;
 }

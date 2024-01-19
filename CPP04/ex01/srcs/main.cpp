@@ -7,21 +7,6 @@
 
 int main()
 {
-	// std::cout << "--------------- Animal ---------------" << std::endl;
-
-    // const Animal* meta = new Animal();
-    // const Animal* j = new Dog();
-    // const Animal* i = new Cat();
-
-    // std::cout << "J Type: " << j->getType() << " " << std::endl;
-    // std::cout << "I Type: " << i->getType() << " " << std::endl;
-    // i->makeSound();
-    // j->makeSound();
-    // meta->makeSound();
-
-    // delete  meta;
-    // delete  j;
-    // delete  i;
     size_t  count = 4;
 
     Animal  *animals[count];
@@ -40,20 +25,20 @@ int main()
     }
 
     // Give animals some ideas
-    ((Cat *)animals[0])->getBrain()->ideas[0] = "Idea 1";
-    ((Cat *)animals[0])->getBrain()->ideas[1] = "Idea 2";
-    ((Cat *)animals[0])->getBrain()->ideas[2] = "Idea 3";
-    ((Cat *)animals[0])->getBrain()->ideas[3] = "Idea 4";
-    ((Cat *)animals[0])->getBrain()->ideas[4] = "Idea 5";
+    static_cast<Cat *>(animals[0])->getBrain()->ideas[0] = "Idea 1";
+    static_cast<Cat *>(animals[0])->getBrain()->ideas[1] = "Idea 2";
+    static_cast<Cat *>(animals[0])->getBrain()->ideas[2] = "Idea 3";
+    static_cast<Cat *>(animals[0])->getBrain()->ideas[3] = "Idea 4";
+    static_cast<Cat *>(animals[0])->getBrain()->ideas[4] = "Idea 5";
 
-    ((Dog *)animals[2])->getBrain()->ideas[0] = "Idea 1";
-    ((Dog *)animals[2])->getBrain()->ideas[1] = "Idea 2";
-    ((Dog *)animals[2])->getBrain()->ideas[2] = "Idea 3";
+    static_cast<Dog *>(animals[2])->getBrain()->ideas[0] = "Idea 1";
+    static_cast<Dog *>(animals[2])->getBrain()->ideas[1] = "Idea 2";
+    static_cast<Dog *>(animals[2])->getBrain()->ideas[2] = "Idea 3";
 
     // Copy animals
     std::cout << "--------------- Copy Animals ---------------" << std::endl;
-    Cat *cat1copy = new Cat(*(Cat *)animals[0]);
-    Dog *dog1copy = new Dog(*(Dog *)animals[2]);
+    Cat *cat1copy = new Cat(*static_cast<Cat *>(animals[0]));
+    Dog *dog1copy = new Dog(*static_cast<Dog *>(animals[2]));
 
     // Check if animals are the same
     std::cout << "--------------- Check If Animals Are The Same ---------------" << std::endl;
