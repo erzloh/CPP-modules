@@ -62,15 +62,6 @@ int main()
 	} catch (const std::exception &e) {
     	std::cout << e.what() << std::endl;
 	}
-	// } catch (Bureaucrat::GradeTooHighException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// } catch (Bureaucrat::GradeTooLowException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// } catch (Form::GradeTooHighException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// } catch (Form::GradeTooLowException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// }
 	
 	return 0;
 }

@@ -1,7 +1,12 @@
 #include "Form.hpp"
 
 Form::Form(const std::string& name, int gradeRequiredToSign, int gradeRequiredToExecute)
-	    : name(name), gradeRequiredToSign(gradeRequiredToSign), gradeRequiredToExecute(gradeRequiredToExecute), signedStatus(false) {}
+	    : name(name), gradeRequiredToSign(gradeRequiredToSign), gradeRequiredToExecute(gradeRequiredToExecute), signedStatus(false) {
+	if (gradeRequiredToSign < 1 || gradeRequiredToExecute < 1)
+		throw GradeTooHighException();
+	else if (gradeRequiredToSign > 150 || gradeRequiredToExecute > 150)
+		throw GradeTooLowException();
+}
 
 Form::Form(const Form& other)
     : name(other.name), gradeRequiredToSign(other.gradeRequiredToSign), gradeRequiredToExecute(other.gradeRequiredToExecute), signedStatus(other.signedStatus) {}

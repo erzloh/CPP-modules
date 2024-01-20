@@ -19,6 +19,11 @@ int main()
 		PresidentialPardonForm p("target");
 		std::cout << p << std::endl;
 
+		{
+			p.beSigned(b);
+			p.execute(b);
+		}
+
 		b.incrementGrade();
 
 		b.signForm(s);
@@ -36,15 +41,21 @@ int main()
 	} catch (const std::exception &e) {
     	std::cout << e.what() << std::endl;
 	}
-	// } catch (Bureaucrat::GradeTooHighException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// } catch (Bureaucrat::GradeTooLowException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// } catch (Form::GradeTooHighException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// } catch (Form::GradeTooLowException &e) {
-	// 	std::cout << e.what() << std::endl;
-	// }
-	
+	// Check exception handling
+	std::cout << std::endl << "------ Check exception handling -------" << std::endl;
+	try {
+		Bureaucrat b("Eric", 20);
+		std::cout << b << std::endl;
+
+		PresidentialPardonForm p("target");
+		std::cout << p << std::endl;
+
+		b.signForm(p);
+		std::cout << p << std::endl;
+
+		b.executeForm(p);
+	} catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 	return 0;
 }

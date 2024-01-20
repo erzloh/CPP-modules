@@ -16,11 +16,11 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
-    if (executor.getGrade() > getGradeRequiredToExecute()) {
-        throw GradeTooLowException();
-    } else if (!isSigned()) {
+    if (!isSigned()) {
 		throw FormNotSignedException();
-	}
+	} else if (executor.getGrade() > getGradeRequiredToExecute()) {
+        throw GradeTooLowException();
+    }
 
 	std::cout << "* drilling noises * ";
 	std::srand(std::time(NULL));

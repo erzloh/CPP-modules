@@ -47,7 +47,9 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 			<< "                    ;%@@@@%%:;;;. " << "\n"
 			<< "                ...;%@@@@@%%:;;;;,..   " << std::endl;
             ofs.close();
-        }
+        } else {
+			throw std::runtime_error("Error: could not open file");
+		}
     } else if (!isSigned()) {
 		throw FormNotSignedException();
 	} else {
