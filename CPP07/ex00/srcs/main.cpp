@@ -45,9 +45,9 @@ int main()
 // {
 //     Awesome a(2), b(4);
 
-//     swap (a,b);
+//     swap(a,b);
 //     std::cout << "a: " << a << " b: " << b << std::endl;
-//     std::cout << "max: " << max(a,b) << std::endl;
-//     std::cout << "min: " << min(a,b) << std::endl;
+//     std::cout << "max: " << max(a, b) << std::endl;
+//     std::cout << "min: " << min(a, b) << std::endl;
 //     return 0;
 // }

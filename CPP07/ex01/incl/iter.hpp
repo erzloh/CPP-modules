@@ -8,11 +8,6 @@ void iter(T *array, size_t size, void (*f)(T &)) {
 }
 
 template <typename T>
-void multiplyByTwo(T &n) {
-	*n *= 2;
-}
-
-template <typename T>
 void print(T &arg) {
 	std::cout << arg << std::endl;
 }
