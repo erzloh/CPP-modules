@@ -1,4 +1,4 @@
-NAME		= ex01
+NAME		= RPN
 CXX			= c++
 CXXFLAGS	= -Werror -Wextra -Wall -std=c++98
 
@@ -21,7 +21,7 @@ all: $(NAME)
 $(NAME): $(OBJS_DIR) $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Compilation completed successfully!$(RESET)"
-	@echo "To run the program, use: ./$(NAME)"
+	@echo "To run the program, use: ./$(NAME) <RPN expression>"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
@@ -39,5 +39,9 @@ fclean: clean
 	@echo "$(RED)Executable removed.$(RESET)"
 
 re: fclean all
+
+debug: CXXFLAGS += -D DEBUG
+debug: re
+	@echo "$(RED)DEBUG MODE"
 
 .PHONY: all clean fclean re

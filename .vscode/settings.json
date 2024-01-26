@@ -69,6 +69,8 @@
 		"memory": "cpp",
 		"stack": "cpp",
 		"type_traits": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"__tree": "cpp",
+		"map": "cpp"
 	}
 }
