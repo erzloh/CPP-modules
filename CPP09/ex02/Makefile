@@ -1,4 +1,4 @@
-NAME		= ex02
+NAME		= PmergeMe
 CXX			= c++
 CXXFLAGS	= -Werror -Wextra -Wall -std=c++98
 
